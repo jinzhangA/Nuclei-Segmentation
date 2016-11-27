@@ -1,16 +1,25 @@
 clc;
 clear;
-
+close all;
 % load('isbi_test90_GT.mat');
 load('isbi_train.mat');
 load('isbi_train_GT.mat');
-% I = imread('EDF0_7/EDF001.png');
-% % figure, imshow(I);
+i = 30;
+I = ISBI_Train{i, 1};
 
-I = ISBI_Train{30, 1};
+% I = imread('EDF0_7/EDF001.png');
+figure, imshow(I);
+
 % figure, imshow(I);
-outimage = nuclei_segmentation(I);
-Dice = DiceSimilarity(outimage, train_Nuclei{30,1});
+outimage = nuclei_segmentation(I, 0, 0.25, 0.25);
+Dice = DiceSimilarity(outimage, train_Nuclei{i,1});
+figure, imshow(outimage);
+
+
+
+% out_reshape = reshape(outimage, [512*512, 1]);
+% gt_reshape = reshape(train_Nuclei{30,1}, [512*512, 1]);
+% [h,p,ci,stats] = ttest(out_reshape, gt_reshape);
 
 % cc = bwconncomp(outimage{30,1},4);
 % array = getfield(cc, 'PixelIdxList');
