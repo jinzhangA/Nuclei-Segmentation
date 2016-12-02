@@ -1,0 +1,21 @@
+function [ image_in ] = distance_based_cleaning( image_in, ref, distance_threshold )
+[m, n] = size(image_in);
+for i = 1:m
+    for j = 1:n
+    end
+end
+end
+
+function [ ret ] = has_true_neighbour( i, j, ref, distance_threshold )
+[m, n] = size(ref);
+for p = i-distance_threshold:i+distance_threshold
+    for q = j-distance_threshold:j+distance_threshold
+        if p > m || p<0 || q < 0 
+        if ref(p, q) == 1
+            ret = True;
+            return ret;
+                 
+
+end
+        end
+    end

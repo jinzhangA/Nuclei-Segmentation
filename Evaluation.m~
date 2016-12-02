@@ -1,0 +1,29 @@
+function [Dice, Precision, Recall ] = Evaluation( out_image, ground_truth )
+CC_out = bwconncomp(out_image).PixelIdxList;
+CC_GT = bwconncomp(ground_truth).PixelIdxList;
+
+TP_object = 0;
+FP_object = 0;
+FN_object = 0;
+
+TP_pixel = 0;
+FP_pixel = 0;
+FN_pixel = 0;
+
+for i = 1:length(CC_out)
+    found = 0;
+    for j = 1:length(CC_GT)
+        TP = length(intersect(CC_out{i}, CC_GT{j}));
+        if TP/length(CC_out{i}) > 0.6 && TP/length(CC_GT{i}) > 0.6
+            TP_object = TP_object + 1;
+            TP_pixel = TP_pixel + length(TP);
+            found = 1;
+            break;
+        end
+    end
+    if found == 0
+        
+
+
+end
+
